@@ -11,6 +11,12 @@
 #' @param dims, vector of length 3 - indices of the PCs to plot
 #' @param ... additional arguments passed to rgl::plot3d
 #'
+#' @details
+#' Note, different to `plot.rppca`, which is relatively slow, `plot3D` does
+#' not down-sample the principal components and it ignores the `ds` slot of an
+#' `rppca` object if present.
+#'
+#'
 #' @export
 plot3D <- function(x, dims=c(1,2,3), ...) {
   if (!requireNamespace("rgl", quietly = TRUE)) {

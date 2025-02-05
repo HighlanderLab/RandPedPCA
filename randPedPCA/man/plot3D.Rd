@@ -16,3 +16,8 @@ plot3D(x, dims = c(1, 2, 3), ...)
 \description{
 A simple wrapper around rgl's pot3d function.
 }
+\details{
+Note, different to `plot.rppca`, which is relatively slow, `plot3D` does
+not down-sample the principal components and it ignores the `ds` slot of an
+`rppca` object if present.
+}

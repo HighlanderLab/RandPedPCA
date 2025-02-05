@@ -150,8 +150,29 @@ test_that("Comparing Hutch++ estimate to inbreeding-based vals (with centring)",
 
 
 
+# Subsampling -------------------------------------------------------------
+
+test_that("Sub-sampling", {
+  pc <- rppca(pedLInv)
+
+  expect_error(dspc(1)) # error, input must inherit 'rppca'
+
+  # default val of 'to' is 10k, greateer then number of individuals, no downsampling and no message
+  expect_no_condition(pcd <- dspc(pc))
+
+  expect_warning(pcd <- dspc(pcd)) # warning about overwriting existing index
+  expect_message(dspc(pc, c(T, F))) # message about to which number of individuals we downsampled
+  expect_message(dspc(pc, c(1,3))) # same here
+
+  # though 100000 is greater than the number of individuals in this PCA
+  # there is no error/warning. This is handled by R. To high index results in NA.
+  expect_message(dspc(pc, c(1,3, 100000)))
+})
 
 
-
-
-
+# Plotting ----------------------------------------------------------------
+test_that("Plotting",{
+  pc <- rppca(pedLInv, center=T, totVar=2694.038)
+  # length of 'col' is different from number of individuals in the PCA
+  expect_warning(plot(pc, col=c("yellow", "green"), to = 0.5))
+})
