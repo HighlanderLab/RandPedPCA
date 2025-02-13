@@ -58,3 +58,76 @@ plot3D <- function(x, dims=c(1,2,3), xlab=NULL, ylab=NULL, zlab=NULL, ...) {
     }
   }
 }
+
+
+
+# internal
+makeProjList <- function(A, offsets, ff=0.1){
+  x <- A[,1:3]
+  if(missing(offsets)) {
+    rr <- apply(A, 2, range)
+    dd <- apply(rr, 2, diff)
+
+    offsets <- c(max(rr[,1]) + dd[1] * ff,
+                 min(rr[,2]) - dd[2] * ff,
+                 min(rr[,3]) - dd[3] * ff)
+  }
+  xyProj = x[,1:3]
+  xyProj[,3] <- offsets[3]
+  xzProj = x[,1:3]
+  xzProj[,2] <- offsets[2]
+  yzProj = x[,1:3]
+  yzProj[,1] <- offsets[1]
+  list(xyProj,
+       xzProj,
+       yzProj)
+}
+
+
+
+#' 3D plot of PC scores with projections on coordinate planes
+#'
+#' @param pc An `rppca` object
+#' @param dims `integer vector`, which PCs to plot, defauts to 1:3
+#' @param plotProj `logical`, whether to plot the projections
+#' @param grid `logical`, wheter to plot grids
+#' @param col the dot colours, integer or string, scalar or vector
+#' @param ff `numeric`, offset for projection (proportion of the orthogonal axis's range)
+#' @param theta,phi polar coordinates in degrees. `theta` rotates round the
+#' vertical axis. `phi` rotates round the horizontal axis.
+#'
+#' @return nothing
+#' @export
+#'
+#' @examples
+#' ped <- pedigree(pedMeta$fid,
+#' pedMeta$mid,
+#' pedMeta$id
+#' )
+#' pc <- rppca(ped)
+#' plot3DWithProj(pc, col=as.numeric(factor(pedMeta$population)))
+#' @export
+plot3DWithProj <- function(pc,
+                           dims=c(1,2,3),
+                           plotProj=T,
+                           grid=T,
+                           col=1,
+                           ff=0.5,
+                           theta=-45,
+                           phi=25){
+
+  plot3D(pc, dims=dims, col=col, size=10)
+  if(plotProj) {
+    sh <- makeProjList(pc$x[,dims], ff=ff)
+    rgl::points3d(sh[[1]], col=col, size=3)
+    rgl::points3d(sh[[2]], col=col, size=3)
+    rgl::points3d(sh[[3]], col=col, size=3)
+  }
+  if(grid){
+    rgl::grid3d("x+")
+    rgl::grid3d("y-")
+    rgl::grid3d("z-")
+
+  }
+  view3d(theta=theta, phi=phi)
+}
