@@ -2,16 +2,16 @@
 
 
 
-#' Generat range matrix for SVD
+#' Generate range matrix for SVD
 #'
 #' @param L a pedigree's L inverse matrix in sparse 'spam' format
-#' @param rank  `integer` how many principal components to return
-#' @param depth `integer` number of iterations for generating the range matrix
-#' @param numVectors `integer` > `rank` to specify the oversampling for the
-#' @param cent `logical` whether or not to (implicitly) centre the additive
-#' relationship matrix
+#' @param rank  An \code{integer}, how many principal components to return
+#' @param depth \code{integer}, number of iterations for generating the range matrix
+#' @param numVectors An \code{integer > rank}, to specify the oversampling for the
+#' @param cent \code{logical} whether or not to (implicitly) 'centre' the additive
+#' relationship matrix, or more precisely, its underlying 'data matrix' L
 #'
-#' @return The range matrix for `randSVD`
+#' @return The range matrix for \code{randSVD}
 #' @export
 #'
 #' @importFrom spam backsolve
@@ -37,17 +37,17 @@ randRangeFinder <- function(L, rank, depth, numVectors, cent=F){
 
 #' Singular value decomposition in sparse triangular matrix
 #'
-#' Uses random linear algebra, see Halko et al. (2010). Singular value
+#' Uses randomised linear algebra, see Halko et al. (2010). Singular value
 #' decomposition (SVD) decomposes a matrix \eqn{X=U\Sigma W^T}
 #'
 #' @param L a pedigree's L inverse matrix in sparse 'spam' format
-#' @param rank  `integer` how many principal components to return
-#' @param depth `integer` number of iterations for generating the range matrix
-#' @param numVectors `integer` > `rank` to specify the oversampling for the
-#' @param cent `logical` whether or not to (implicitly) centre the additive
+#' @param rank  An \code{integer}, how many principal components to return
+#' @param depth \code{integer}, the number of iterations for generating the range matrix
+#' @param numVectors An \code{integer > rank} to specify the oversampling for the
+#' @param cent \code{logical}, whether or not to (implicitly) centre the additive
 #' relationship matrix
 #'
-#' @return A list of three: u (=U), d (=Sigma), and v (=W^T)
+#' @return A list of three: \code{u} (=U), \code{d} (=Sigma), and \code{v} (=W^T)
 #' @export
 #'
 #' @importFrom spam backsolve
@@ -67,14 +67,14 @@ randSVD <- function(L, rank, depth, numVectors, cent=F){
   return(list(u=U[,1:rank], d=D[1:rank], v=V[1:rank,]))
 }
 
-#' Compute the number of vectors used for trace estimation
+#' Compute the number of vectors to use for Hutchinson trace estimation
 #'
 #' Follows Skorski, M. (2021). Modern Analysis of Hutchinson’s Trace Estimator.
 #' 2021 55th Annual Conference on Information Sciences and Systems (CISS), 1–5.
 #' https://doi.org/10.1109/CISS50987.2021.9400306
 #'
-#' @param e `numeric` denoting the relative error margin
-#' @param d `numeric`. 1-d is the probability the the relative error is bounded
+#' @param e A \code{numeric} denoting the relative error margin
+#' @param d A \code{numeric}. 1-d is the probability the the relative error is bounded
 #' by e.
 #'
 #' @return a scalar
@@ -88,10 +88,12 @@ getNumVectorsHutchinson <- function(e, d){
 #' Using Hutchinson's method
 #'
 #' @param L A pedigree's L inverse matrix
-#' @param numVectors, an `integer` specifying how many random vectors to use
+#' @param numVectors, an \code{integer} specifying how many random vectors to use
 #'
-#' The higher `numVectors`, the higher the accuracy and the longer the runtime.
-#' Accuracy can be estimated with the function `getNumVectorsHutchinson`.
+#' If you do not have a good reason to do otherwise, use the function \code{hutchpp} instead.
+#'
+#' The higher \code{numVectors}, the higher the accuracy and the longer the running time.
+#' Accuracy can be estimated with the function \code{getNumVectorsHutchinson}.
 #'
 #' @return a scalar
 randTraceHutchinson <- function(L, numVectors){
@@ -107,41 +109,44 @@ randTraceHutchinson <- function(L, numVectors){
   return(mean(Ests))
 }
 
-#' Fast pedigree PCA using sparse matrices and random linear algebra
+#' Fast pedigree PCA using sparse matrices and randomised linear algebra
 #'
 #' @param pdg A representation of a pedigree, see Details.
-#' @param method `string` only randSVD (the default) is implemented
-#' @param rank  `integer` how many principal components to return
-#' @param depth `integer` number of iterations for generating the range matrix
-#' @param numVectors `integer` > `rank` to specify the oversampling for the
+#' @param method \code{string} only randSVD (the default) is implemented
+#' @param rank  \code{integer} how many principal components to return
+#' @param depth \code{integer} number of iterations for generating the range matrix
+#' @param numVectors \code{integer > rank} to specify the oversampling for the
 #' range matrix
-#' @param totVar `scalar` (optional) the total variance, required for
+#' @param totVar \code{scalar} (optional) the total variance, required for
 #' computation of variance proportions when using an L-inverse matrix a input
-#' @param center `logical` whether or not to (implicitly) centre the additive
+#' @param center \code{logical} whether or not to (implicitly) centre the additive
 #' relationship matrix
 #' @param ... optional arguments passed to methods
 #'
 #' @details
-#' The output slots are named like those of R's built in `prcomp` function.
+#' The output slots are named like those of R's built in \code{prcomp} function.
 #' Rotation is not returned by default as it is the transpose of the PC scores,
-#' which are returned in `x`. `scale` and `center` are set to `FALSE`.
+#' which are returned in \code{x}. \code{scale} and \code{center} are set to \code{FALSE}.
 #'
 #' @returns
-#' A `list` containing:
-#' * the principal components
-#' * sdev, the variance components of each PC. Note that the total variance is
+#' A \code{list} containing:
+#' \describe{
+#'  \item{\code{x}}{the principal components}
+#'  \item{\code{sdev}}{the variance components of each PC. Note that the total variance is
 #'   not known per se and this these components cannot be used to compute the
 #'   proportion of the total variance accounted for by each PC. However, if
-#'   `nVecTraceEst` is specified, `rppca` will estimate the total variance and
-#'   return variance proportions.
-#' * vProp, the estimated variance proportions accounted for by each PC.
-#'   Only returned if `totVar` is set.
-#' * scale, always `FALSE`
-#' * center, `logical` whether or not the implicit input matrix was centred
-#' * rotation, the right singular values of the (implicit) relationship matrix.
-#'   Only returned if `returnRotation == TRUE`
-#' * varProps, proportion of the total variance explained by each PC. Only
-#'   returned if starting from a pedigree object.
+#'   \code{nVecTraceEst} is specified, \code{rppca} will estimate the total variance and
+#'   return variance proportions.}
+#'  \item{\code{vProp}}{the estimated variance proportions accounted for by each PC.
+#'   Only returned if \code{totVar} is set.}
+#' \item{\code{scale}}{always \code{FALSE}}
+#' \item{\code{center}}{\code{logical} indicating whether or not the implicit data matrix was centred}
+#' \item{\code{rotation}}{the right singular values of the relationship matrix.
+#'   Only returned if \code{returnRotation == TRUE}}
+#' \item{\code{varProps}}{proportion of the total variance explained by each PC. Only
+#'   returned if starting from a pedigree object without centring, or if \code{totVar} is supplied.
+#'   }
+#'   }
 #' @export rppca
 #' @rdname rppca
 #'

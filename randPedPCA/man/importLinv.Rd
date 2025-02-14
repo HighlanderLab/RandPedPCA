@@ -10,9 +10,9 @@ importLinv(pth)
 \item{pth}{path to matrix market file for L inverse matrix in dgTMatrix format}
 }
 \value{
-A `spam` sparse matrix
+A \code{spam} sparse matrix
 }
 \description{
-RandPedPCA relies in the `spam` onject format. But matrices are commonly
+RandPedPCA relies in the \code{spam} onject format. But matrices are commonly
 stored in other formats.
 }

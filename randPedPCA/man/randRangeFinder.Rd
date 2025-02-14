@@ -2,25 +2,25 @@
 % Please edit documentation in R/rppca.R
 \name{randRangeFinder}
 \alias{randRangeFinder}
-\title{Generat range matrix for SVD}
+\title{Generate range matrix for SVD}
 \usage{
 randRangeFinder(L, rank, depth, numVectors, cent = F)
 }
 \arguments{
 \item{L}{a pedigree's L inverse matrix in sparse 'spam' format}
 
-\item{rank}{`integer` how many principal components to return}
+\item{rank}{An \code{integer}, how many principal components to return}
 
-\item{depth}{`integer` number of iterations for generating the range matrix}
+\item{depth}{\code{integer}, number of iterations for generating the range matrix}
 
-\item{numVectors}{`integer` > `rank` to specify the oversampling for the}
+\item{numVectors}{An \code{integer > rank}, to specify the oversampling for the}
 
-\item{cent}{`logical` whether or not to (implicitly) centre the additive
-relationship matrix}
+\item{cent}{\code{logical} whether or not to (implicitly) 'centre' the additive
+relationship matrix, or more precisely, its underlying 'data matrix' L}
 }
 \value{
-The range matrix for `randSVD`
+The range matrix for \code{randSVD}
 }
 \description{
-Generat range matrix for SVD
+Generate range matrix for SVD
 }

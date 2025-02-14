@@ -2,14 +2,14 @@
 % Please edit documentation in R/rppca.R
 \name{getNumVectorsHutchinson}
 \alias{getNumVectorsHutchinson}
-\title{Compute the number of vectors used for trace estimation}
+\title{Compute the number of vectors to use for Hutchinson trace estimation}
 \usage{
 getNumVectorsHutchinson(e, d)
 }
 \arguments{
-\item{e}{`numeric` denoting the relative error margin}
+\item{e}{A \code{numeric} denoting the relative error margin}
 
-\item{d}{`numeric`. 1-d is the probability the the relative error is bounded
+\item{d}{A \code{numeric}. 1-d is the probability the the relative error is bounded
 by e.}
 }
 \value{

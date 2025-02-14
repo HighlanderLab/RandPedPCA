@@ -15,9 +15,9 @@
 #' @param ... additional arguments passed to rgl::plot3d
 #'
 #' @details
-#' Note, different to `plot.rppca`, which is relatively slow, `plot3D` does
-#' not down-sample the principal components and it ignores the `ds` slot of an
-#' `rppca` object if present.
+#' Note, different to \code{plot.rppca}, which is relatively slow, \code{plot3D} does
+#' not down-sample the principal components and it ignores the \code{ds} slot of an
+#' \code{rppca} object if present.
 #'
 #'
 #' @export
@@ -87,14 +87,14 @@ makeProjList <- function(A, offsets, ff=0.1){
 
 #' 3D plot of PC scores with projections on coordinate planes
 #'
-#' @param pc An `rppca` object
-#' @param dims `integer vector`, which PCs to plot, defauts to 1:3
-#' @param plotProj `logical`, whether to plot the projections
-#' @param grid `logical`, wheter to plot grids
+#' @param pc An \code{rppca} object
+#' @param dims \code{integer} \code{vector}, which PCs to plot, defauts to 1:3
+#' @param plotProj \code{logical}, whether to plot the projections
+#' @param grid \code{logical}, wheter to plot grids
 #' @param col the dot colours, integer or string, scalar or vector
-#' @param ff `numeric`, offset for projection (proportion of the orthogonal axis's range)
-#' @param theta,phi polar coordinates in degrees. `theta` rotates round the
-#' vertical axis. `phi` rotates round the horizontal axis.
+#' @param ff \code{numeric}, offset for projection (proportion of the orthogonal axis's range)
+#' @param theta,phi polar coordinates in degrees. \code{theta} rotates round the
+#' vertical axis. \code{phi} rotates round the horizontal axis.
 #'
 #' @return nothing
 #' @export
@@ -129,5 +129,5 @@ plot3DWithProj <- function(pc,
     rgl::grid3d("z-")
 
   }
-  view3d(theta=theta, phi=phi)
+  rgl::view3d(theta=theta, phi=phi)
 }

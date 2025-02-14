@@ -10,7 +10,7 @@ sparse2spam(sprs)
 \item{sprs}{A sparse matrix.}
 }
 \value{
-A `spam` sparse matrix
+A \code{spam} sparse matrix
 }
 \description{
 Convert generic sparse matrix to spam format

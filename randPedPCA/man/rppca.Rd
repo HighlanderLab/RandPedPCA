@@ -4,7 +4,7 @@
 \alias{rppca}
 \alias{rppca.spam}
 \alias{rppca.pedigree}
-\title{Fast pedigree PCA using sparse matrices and random linear algebra}
+\title{Fast pedigree PCA using sparse matrices and randomised linear algebra}
 \usage{
 rppca(pdg, ...)
 
@@ -35,45 +35,48 @@ rppca(pdg, ...)
 
 \item{...}{optional arguments passed to methods}
 
-\item{method}{`string` only randSVD (the default) is implemented}
+\item{method}{\code{string} only randSVD (the default) is implemented}
 
-\item{rank}{`integer` how many principal components to return}
+\item{rank}{\code{integer} how many principal components to return}
 
-\item{depth}{`integer` number of iterations for generating the range matrix}
+\item{depth}{\code{integer} number of iterations for generating the range matrix}
 
-\item{numVectors}{`integer` > `rank` to specify the oversampling for the
+\item{numVectors}{\code{integer > rank} to specify the oversampling for the
 range matrix}
 
-\item{totVar}{`scalar` (optional) the total variance, required for
+\item{totVar}{\code{scalar} (optional) the total variance, required for
 computation of variance proportions when using an L-inverse matrix a input}
 
-\item{center}{`logical` whether or not to (implicitly) centre the additive
+\item{center}{\code{logical} whether or not to (implicitly) centre the additive
 relationship matrix}
 }
 \value{
-A `list` containing:
-* the principal components
-* sdev, the variance components of each PC. Note that the total variance is
+A \code{list} containing:
+\describe{
+ \item{\code{x}}{the principal components}
+ \item{\code{sdev}}{the variance components of each PC. Note that the total variance is
   not known per se and this these components cannot be used to compute the
   proportion of the total variance accounted for by each PC. However, if
-  `nVecTraceEst` is specified, `rppca` will estimate the total variance and
-  return variance proportions.
-* vProp, the estimated variance proportions accounted for by each PC.
-  Only returned if `totVar` is set.
-* scale, always `FALSE`
-* center, `logical` whether or not the implicit input matrix was centred
-* rotation, the right singular values of the (implicit) relationship matrix.
-  Only returned if `returnRotation == TRUE`
-* varProps, proportion of the total variance explained by each PC. Only
-  returned if starting from a pedigree object.
+  \code{nVecTraceEst} is specified, \code{rppca} will estimate the total variance and
+  return variance proportions.}
+ \item{\code{vProp}}{the estimated variance proportions accounted for by each PC.
+  Only returned if \code{totVar} is set.}
+\item{\code{scale}}{always \code{FALSE}}
+\item{\code{center}}{\code{logical} indicating whether or not the implicit data matrix was centred}
+\item{\code{rotation}}{the right singular values of the relationship matrix.
+  Only returned if \code{returnRotation == TRUE}}
+\item{\code{varProps}}{proportion of the total variance explained by each PC. Only
+  returned if starting from a pedigree object without centring, or if \code{totVar} is supplied.
+  }
+  }
 }
 \description{
-Fast pedigree PCA using sparse matrices and random linear algebra
+Fast pedigree PCA using sparse matrices and randomised linear algebra
 }
 \details{
-The output slots are named like those of R's built in `prcomp` function.
+The output slots are named like those of R's built in \code{prcomp} function.
 Rotation is not returned by default as it is the transpose of the PC scores,
-which are returned in `x`. `scale` and `center` are set to `FALSE`.
+which are returned in \code{x}. \code{scale} and \code{center} are set to \code{FALSE}.
 }
 \examples{
 pc <- rppca(pedLInv)

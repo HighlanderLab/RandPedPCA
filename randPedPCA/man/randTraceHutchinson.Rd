@@ -9,10 +9,12 @@ randTraceHutchinson(L, numVectors)
 \arguments{
 \item{L}{A pedigree's L inverse matrix}
 
-\item{numVectors, }{an `integer` specifying how many random vectors to use
+\item{numVectors, }{an \code{integer} specifying how many random vectors to use
 
-The higher `numVectors`, the higher the accuracy and the longer the runtime.
-Accuracy can be estimated with the function `getNumVectorsHutchinson`.}
+If you do not have a good reason to do otherwise, use the function \code{hutchpp} instead.
+
+The higher \code{numVectors}, the higher the accuracy and the longer the running time.
+Accuracy can be estimated with the function \code{getNumVectorsHutchinson}.}
 }
 \value{
 a scalar

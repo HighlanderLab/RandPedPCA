@@ -3,12 +3,12 @@
 
 #' Generate spam object from L inverse file
 #'
-#' RandPedPCA relies in the `spam` onject format. But matrices are commonly
+#' RandPedPCA relies in the \code{spam} onject format. But matrices are commonly
 #' stored in other formats.
 #'
 #' @param pth path to matrix market file for L inverse matrix in dgTMatrix format
 #'
-#' @return A `spam` sparse matrix
+#' @return A \code{spam} sparse matrix
 #' @export
 #' @importFrom methods as
 #' @importFrom Matrix readMM
@@ -26,7 +26,7 @@ importLinv <- function(pth){
 #'
 #' @param sprs A sparse matrix.
 #'
-#' @return A `spam` sparse matrix
+#' @return A \code{spam} sparse matrix
 #' @export
 #' @importFrom methods as
 #' @importFrom spam as.spam.dgCMatrix

@@ -13,18 +13,18 @@ dspc(pc, to = 10000)
 as a proportion or integer or a index vector, see details.}
 }
 \value{
-An (invisible) object of class `rppca` with a slot `ds` added.
+An (invisible) object of class \code{rppca} with a slot \code{ds} added.
 }
 \description{
 This index is used by plot.rppca to downsample the col (colour) values. It
 is stored in the rppca object's ds slot.
 }
 \details{
-The parameter `to` is used to specify and possibly which individuals are sampled.
-If NA, all individuals are retained. If `to` is of length one and is between 0 and 1,
+The parameter \code{to} is used to specify and possibly which individuals are sampled.
+If NA, all individuals are retained. If \code{to} is of length one and is between 0 and 1,
 then it is interpreted as a proportion. If it is greater than 1, it is taken to be
-the number of individuals to be sampled (possibly rounded by sample.int). If
-`to` is a logical or an integer vector, it is used for logical or integer indexing, respectively.
-The integer indices of the sample individuals are written to the `ds` slot.
-If `ds` exists, it is overwritten with a warning.
+the number of individuals to be sampled (possibly rounded by \code{sample.int}). If
+\code{to} is a logical or an integer vector, it is used for logical or integer indexing, respectively.
+The integer indices of the sample individuals are written to the \code{ds} slot.
+If \code{ds} exists, it is overwritten with a warning.
 }

@@ -12,7 +12,7 @@ This approach enables PCA for populations with large pedigrees.
 To install the package from GitHub (it's not yet on CRAN), run:
 ```
 devtools::install_github("HighlanderLab/RandPedigreePCA", subdir = "randPedPCA",
-                         ref="v0.9.7", build_vignettes = T)
+                         ref="v0.9.8", build_vignettes = T)
 ```
 ## First steps
 For a demonstration, check out

@@ -23,9 +23,9 @@ plot3D(x, dims = c(1, 2, 3), xlab = NULL, ylab = NULL, zlab = NULL, ...)
 A simple wrapper around rgl's pot3d function.
 }
 \details{
-Note, different to `plot.rppca`, which is relatively slow, `plot3D` does
-not down-sample the principal components and it ignores the `ds` slot of an
-`rppca` object if present.
+Note, different to \code{plot.rppca}, which is relatively slow, \code{plot3D} does
+not down-sample the principal components and it ignores the \code{ds} slot of an
+\code{rppca} object if present.
 }
 \examples{
 pc <- rppca(pedLInv)

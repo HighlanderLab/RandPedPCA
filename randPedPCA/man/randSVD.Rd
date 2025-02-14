@@ -9,19 +9,19 @@ randSVD(L, rank, depth, numVectors, cent = F)
 \arguments{
 \item{L}{a pedigree's L inverse matrix in sparse 'spam' format}
 
-\item{rank}{`integer` how many principal components to return}
+\item{rank}{An \code{integer}, how many principal components to return}
 
-\item{depth}{`integer` number of iterations for generating the range matrix}
+\item{depth}{\code{integer}, the number of iterations for generating the range matrix}
 
-\item{numVectors}{`integer` > `rank` to specify the oversampling for the}
+\item{numVectors}{An \code{integer > rank} to specify the oversampling for the}
 
-\item{cent}{`logical` whether or not to (implicitly) centre the additive
+\item{cent}{\code{logical}, whether or not to (implicitly) centre the additive
 relationship matrix}
 }
 \value{
-A list of three: u (=U), d (=Sigma), and v (=W^T)
+A list of three: \code{u} (=U), \code{d} (=Sigma), and \code{v} (=W^T)
 }
 \description{
-Uses random linear algebra, see Halko et al. (2010). Singular value
+Uses randomised linear algebra, see Halko et al. (2010). Singular value
 decomposition (SVD) decomposes a matrix \eqn{X=U\Sigma W^T}
 }

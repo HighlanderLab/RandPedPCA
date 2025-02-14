@@ -16,20 +16,20 @@ plot3DWithProj(
 )
 }
 \arguments{
-\item{pc}{An `rppca` object}
+\item{pc}{An \code{rppca} object}
 
-\item{dims}{`integer vector`, which PCs to plot, defauts to 1:3}
+\item{dims}{\code{integer} \code{vector}, which PCs to plot, defauts to 1:3}
 
-\item{plotProj}{`logical`, whether to plot the projections}
+\item{plotProj}{\code{logical}, whether to plot the projections}
 
-\item{grid}{`logical`, wheter to plot grids}
+\item{grid}{\code{logical}, wheter to plot grids}
 
 \item{col}{the dot colours, integer or string, scalar or vector}
 
-\item{ff}{`numeric`, offset for projection (proportion of the orthogonal axis's range)}
+\item{ff}{\code{numeric}, offset for projection (proportion of the orthogonal axis's range)}
 
-\item{theta, phi}{polar coordinates in degrees. `theta` rotates round the
-vertical axis. `phi` rotates round the horizontal axis.}
+\item{theta, phi}{polar coordinates in degrees. \code{theta} rotates round the
+vertical axis. \code{phi} rotates round the horizontal axis.}
 }
 \value{
 nothing
