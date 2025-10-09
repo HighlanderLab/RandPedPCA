@@ -4,10 +4,10 @@
 \alias{randRangeFinder}
 \title{Generate range matrix for SVD}
 \usage{
-randRangeFinder(L, rank, depth, numVectors, cent = FALSE)
+randRangeFinder(L, rank, depth, numVectors, cent = FALSE, oracleFun)
 }
 \arguments{
-\item{L}{a pedigree's L inverse matrix in sparse 'spam' format}
+\item{L}{a pedigree's L inverse matrix (or other expression if using a different oracle function)}
 
 \item{rank}{An \code{integer}, how many principal components to return}
 
@@ -17,6 +17,9 @@ randRangeFinder(L, rank, depth, numVectors, cent = FALSE)
 
 \item{cent}{\code{logical} whether or not to (implicitly) 'centre' the additive
 relationship matrix, or more precisely, its underlying 'data matrix' L}
+
+\item{oracleFun}{A function that computes Ax for a
+given matrix}
 }
 \value{
 The range matrix for \code{randSVD}

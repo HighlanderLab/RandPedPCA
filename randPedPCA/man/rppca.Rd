@@ -3,6 +3,8 @@
 \name{rppca}
 \alias{rppca}
 \alias{rppca.spam}
+\alias{rppca.Matrix}
+\alias{rppca.CHMfactor}
 \alias{rppca.pedigree}
 \title{Fast pedigree PCA using sparse matrices and randomised linear algebra}
 \usage{
@@ -16,6 +18,31 @@ rppca(X, ...)
   numVectors,
   totVar = NULL,
   center = FALSE,
+  oracleFun = oraculumLi,
+  ...
+)
+
+\method{rppca}{Matrix}(
+  X,
+  method = "randSVD",
+  rank = 10,
+  depth = 3,
+  numVectors,
+  totVar = NULL,
+  center = FALSE,
+  oracleFun = oraculumLi,
+  ...
+)
+
+\method{rppca}{CHMfactor}(
+  X,
+  method = "randSVD",
+  rank = 10,
+  depth = 3,
+  numVectors,
+  totVar = NULL,
+  center = FALSE,
+  oracleFun = oraculumLi,
   ...
 )
 
@@ -27,6 +54,7 @@ rppca(X, ...)
   numVectors,
   totVar = NULL,
   center = FALSE,
+  oracleFun = oraculumLi,
   ...
 )
 }

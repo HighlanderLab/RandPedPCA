@@ -1,7 +1,7 @@
 Package: randPedPCA
 Type: Package
 Title: Fast PCA for Large Pedigrees
-Version: 1.1.4
+Version: 1.2.0
 Authors@R: c(
     person("Hanbin", "Lee", email = "hblee@umich.edu", role = "aut"),
     person("Hannes", "Becher", email = "h.becher@ed.ac.uk", role = "cre"),

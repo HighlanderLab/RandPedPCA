@@ -4,7 +4,7 @@
 \alias{randSVD}
 \title{Singular value decomposition in sparse triangular matrix}
 \usage{
-randSVD(L, rank, depth, numVectors, cent = FALSE)
+randSVD(L, rank, depth, numVectors, cent = FALSE, oracleFun)
 }
 \arguments{
 \item{L}{a pedigree's L inverse matrix in sparse 'spam' format}
@@ -17,6 +17,9 @@ randSVD(L, rank, depth, numVectors, cent = FALSE)
 
 \item{cent}{\code{logical}, whether or not to (implicitly) centre the additive
 relationship matrix}
+
+\item{oracleFun}{A function that computes Ax for a
+given matrix}
 }
 \value{
 A list of three: \code{u} (=U), \code{d} (=Sigma), and \code{v} (=W^T)
